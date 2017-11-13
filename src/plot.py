@@ -20,10 +20,10 @@ class Plot:
       #criando linhas
       canvas.create_line(self.pos[p[0]][0],self.pos[p[0]][1],self.pos[p[1]][0],self.pos[p[1]][1])
       #primeiro vértice do par
-      canvas.create_oval(self.pos[p[0]][0]-10,self.pos[p[0]][1]-10,self.pos[p[0]][0]+10,self.pos[p[0]][1]+10,fill="blue")
-      canvas.create_text(self.pos[p[0]][0],self.pos[p[0]][1],text=p[0],fill="black")
+      canvas.create_oval(self.pos[p[0]][0]-10,self.pos[p[0]][1]-10,self.pos[p[0]][0]+10,self.pos[p[0]][1]+10,fill="black")
+      canvas.create_text(self.pos[p[0]][0],self.pos[p[0]][1],text=p[0],fill="yellow")
       #segundo vértice do par
-      canvas.create_oval(self.pos[p[1]][0]-10,self.pos[p[1]][1]-10,self.pos[p[1]][0]+10,self.pos[p[1]][1]+10,fill="blue")
-      canvas.create_text(self.pos[p[1]][0],self.pos[p[1]][1],text=p[1],fill="black")
+      canvas.create_oval(self.pos[p[1]][0]-10,self.pos[p[1]][1]-10,self.pos[p[1]][0]+10,self.pos[p[1]][1]+10,fill="black")
+      canvas.create_text(self.pos[p[1]][0],self.pos[p[1]][1],text=p[1],fill="yellow")
     master.title(title)
     master.mainloop()

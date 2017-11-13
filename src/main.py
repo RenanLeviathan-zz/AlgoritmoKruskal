@@ -27,33 +27,44 @@ pos={
   '5':(200,150),
   '6':(250,100)
   }
-def eAciclico(g):
-  v=g[0][0]
-  ini=v
-  w=''
-  for t in g:
-    if w==t[1] or w==t[0]:
-      v=w
-      if v==ini:
-        return False
-  return True
-      
 
+
+parent=dict()
+rank=dict()
+#cria conjunto para verificação de acíclicos
+def create_set(vertice):
+    parent[vertice]=vertice
+    rank[vertice]=0
+    
+def find(vertice):
+    if parent[vertice]!=vertice:
+        parent[vertice]=find(parent[vertice])
+    return parent[vertice]   
+
+def union(v,w):
+    r1 =find(v)
+    r2 = find(w)
+    if r1 != r2:
+        if rank[r1]>rank[r2]:
+            parent[r2]=r1
+        else:
+            parent[r1]=r2
+            if rank[r1]==rank[r2]:rank[r2]+=1
 #ordena as arestas em ordem decrescente
 global H
-grafo.sort(key=lambda a : a[2],reverse=True)
+grafo.sort(key=lambda a : a[2])
 H=grafo
 global T
 T=[]
-T.append(H[0])
 global i
 i=1
-while len(T)<7:
-  tmp=T+[H[i]]
-  if eAciclico(tmp):
-    T.append(H[i])
-    i+=1
-  tmp=[]
+for v in pos.keys():
+    create_set(v)
+for h in H:
+    v,w,p = h
+    if find(v)!=find(w):
+        union(v,w)
+        T.append((v,w))
 print(T)
 g=Plot(T, pos)
 g.plot("Arvore geradora mínima (Algoritmo de Kruskal)")
